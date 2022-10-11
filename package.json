@@ -2,7 +2,10 @@
   "name": "@u4/tiny-glob",
   "version": "0.2.9",
   "description": "Tiny and extremely fast globbing",
-  "repository": "terkelg/tiny-glob",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UrielCh/tiny-glob.git"
+  },
   "types": "index.d.ts",
   "license": "MIT",
   "author": {
@@ -16,6 +19,8 @@
   ],
   "scripts": {
     "bench": "node bench",
+    "build": "tsc",
+    "prepare": "npm run build",
     "test": "ts-node node_modules/tape/bin/tape test/*.ts | tap-spec"
   },
   "devDependencies": {
