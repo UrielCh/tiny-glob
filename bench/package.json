@@ -1,8 +1,14 @@
 {
   "devDependencies": {
+    "@types/benchmark": "^2.1.2",
+    "@types/cli-table2": "^0.2.3",
+    "@types/glob": "^8.0.0",
     "benchmark": "^2.1.4",
     "cli-table2": "^0.2.0",
-    "fast-glob": "^2.2.0",
-    "glob": "^7.1.2"
+    "fast-glob": "^3.2.12",
+    "glob": "^8.0.3"
+  },
+  "dependencies": {
+    "tiny-glob": "^0.2.9"
   }
 }

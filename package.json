@@ -1,5 +1,5 @@
 {
-  "name": "tiny-glob",
+  "name": "@u4/tiny-glob",
   "version": "0.2.9",
   "description": "Tiny and extremely fast globbing",
   "repository": "terkelg/tiny-glob",
