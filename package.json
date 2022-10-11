@@ -18,13 +18,7 @@
     "bench": "node bench",
     "test": "ts-node node_modules/tape/bin/tape test/*.ts | tap-spec"
   },
-  "dependencies": {
-    "globalyzer": "^0.1.4",
-    "globrex": "^0.1.2"
-  },
   "devDependencies": {
-    "@types/globalyzer": "^0.1.1",
-    "@types/globrex": "^0.1.2",
     "@types/node": "^18.8.4",
     "@types/tape": "^4.13.2",
     "tap-spec": "^5.0.0",

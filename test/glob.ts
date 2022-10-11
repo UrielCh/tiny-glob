@@ -6,7 +6,6 @@ import { BlobOptions, glob } from '../index';
 const cwd = join(__dirname, 'fixtures');
 
 async function isMatch(t: test.Test, str: string, opts: BlobOptions, arr: string[]): Promise<void> {
-  // arr = arr.map(unixify);
   arr = await glob(str, opts);
   arr = arr.map(unixify);
   const val = order(arr);

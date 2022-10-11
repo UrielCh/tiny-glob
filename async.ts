@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-import globrex from 'globrex';
-import globalyzer from 'globalyzer';
+import globrex from './globrex';
+import globalyzer from './globalyzer';
 import { join, resolve, relative } from 'path';
 import { BlobOptions, BlobOptionsI, BlobResults, isHidden } from './common';
 

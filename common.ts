@@ -1,4 +1,4 @@
-import globrex from 'globrex';
+import { type Path } from './globrex';
 
 export const isHidden = /(^|[\\\/])\.[^\\\/\.]/g;
 // const readdir = promisify(fs.readdir);
@@ -29,7 +29,7 @@ export type BlobOptions = {
 
 export type BlobOptionsI = BlobOptions & { cwd: string; };
 
-export interface BlobResults extends globrex.Path {
+export interface BlobResults extends Path {
     globstar: string;
 }
 
