@@ -16,15 +16,20 @@
   ],
   "scripts": {
     "bench": "node bench",
-    "test": "tape test/*.js | tap-spec"
+    "test": "ts-node node_modules/tape/bin/tape test/*.ts | tap-spec"
   },
   "dependencies": {
-    "globalyzer": "0.1.0",
+    "globalyzer": "^0.1.4",
     "globrex": "^0.1.2"
   },
   "devDependencies": {
+    "@types/globalyzer": "^0.1.1",
+    "@types/globrex": "^0.1.2",
+    "@types/node": "^18.8.4",
+    "@types/tape": "^4.13.2",
     "tap-spec": "^5.0.0",
-    "tape": "^5.0.1"
+    "tape": "^5.6.1",
+    "ts-node": "^10.9.1"
   },
   "keywords": [
     "glob",

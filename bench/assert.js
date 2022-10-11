@@ -1,9 +1,13 @@
 const assert = require('assert');
-const { promisify } = require('util');
-const { order } = require('../test/helpers');
+const {
+  promisify
+} = require('util');
+const {
+  order
+} = require('../test/helpers');
 const glob = promisify(require('glob'));
 const fast = require('fast-glob');
-const tiny = require('../');
+const tiny = require('../async');
 
 let prev;
 
