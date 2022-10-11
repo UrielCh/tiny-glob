@@ -1,4 +1,4 @@
-import globrex, { Options } from '../../globrex';
+import globrex, { Options, Results } from '../../globrex';
 import test from 'tape';
 const isWin = process.platform === 'win32';
 
@@ -24,14 +24,14 @@ export function match(glob: string, strUnix: string, strWin?: string, opts = {} 
   return res.regex.test(isWin && strWin ? strWin : strUnix);
 }
 
-export function matchRegex(t: test.Test, pattern: string, ifUnix: string, ifWin: string, opts: Options) {
+export function matchRegex(t: test.Test, pattern: string, ifUnix: string, ifWin: string, opts: Options): Results {
   const res = globrex(pattern, opts);
   const { regex } = (opts.filepath ? res.path : res) as any;
   t.is(regex.toString(), isWin ? ifWin : ifUnix, '~> regex matches expectant');
   return res;
 }
 
-export function matchSegments(t: test.Test, pattern: string, ifUnix: string[], ifWin: string[], opts: Options) {
+export function matchSegments(t: test.Test, pattern: string, ifUnix: string[], ifWin: string[], opts: Options): Results {
   const res = globrex(pattern, { filepath: true, ...opts });
   const str = res.path!.segments.join(' ');
   const exp = (isWin ? ifWin : ifUnix).join(' ');

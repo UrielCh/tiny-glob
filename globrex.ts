@@ -33,7 +33,7 @@ export interface Path {
 }
 
 
-interface Results {
+export interface Results {
     /** This property only exists if the option `filepath` is true. */
     path?: Path;
     /** JavaScript RegExp instance. */

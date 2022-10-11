@@ -1,5 +1,4 @@
 import test from 'tape';
-import { join } from 'path';
 import $ from '../globalyzer';
 
 test('standard', t => {

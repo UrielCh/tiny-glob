@@ -12,9 +12,9 @@ const tiny = require('../async');
 let prev;
 
 module.exports = async function (str, opts) {
-  let fn, tmp;
-  for (fn of [glob, fast, tiny]) {
-    tmp = await fn(str, opts).then(order);
+  console.log([glob, fast, tiny])
+  for (const fn of [glob, fast, tiny]) {
+    const tmp = await fn(str, opts).then(order);
     prev && assert.deepEqual(tmp, prev);
     prev = tmp;
   }
