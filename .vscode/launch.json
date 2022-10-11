@@ -9,7 +9,7 @@
     "name": "Tape Test",
     "program": "${workspaceFolder}/node_modules/tape/bin/tape",
     "args": [
-      "${workspaceFolder}/test/glob.ts"
+      "${workspaceFolder}/test/*.test.ts"
     ],
     "env": {
       "NODE_OPTIONS": "-r ts-node/register --no-warnings"

@@ -44,8 +44,9 @@ function isglob(str: string, { strict = true } = {} as GlobalyzerOpt): boolean {
  * @param {String} str Path/glob string
  * @returns {String} static path section of glob
  */
-function parent(str: string, { strict = false } = {} as GlobalyzerOpt): string {
-    str = path.normalize(str).replace(/\/|\\/, '/');
+function parent(strIn: string, { strict = false } = {} as GlobalyzerOpt): string {
+    let str = path.normalize(strIn);
+    str = str.replace(/\/|\\/g, '/');
 
     // special case for strings ending in enclosure containing path separator
     if (/[\{\[].*[\/]*.*[\}\]]$/.test(str)) str += '/';

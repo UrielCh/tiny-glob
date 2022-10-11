@@ -129,202 +129,178 @@ export function globrex(glob: string, { extended = false, globstar = false, stri
         }
     }
 
-    // let c, n;
     for (let i = 0; i < glob.length; i++) {
-        let c = glob[i];
-        let n = glob[i + 1];
-
-        if (['\\', '$', '^', '.', '='].includes(c)) {
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === '/') {
-            add(`\\${c}`, { split: true });
-            if (n === '/' && !strict) regex += '?';
-            continue;
-        }
-
-        if (c === '(') {
-            if (ext.length) {
-                add(c);
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === ')') {
-            if (ext.length) {
-                add(c);
-                let type = ext.pop() as string;
-                if (type === '@') {
-                    add('{1}');
-                } else if (type === '!') {
-                    add('([^\/]*)');
-                } else {
-                    add(type);
-                }
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === '|') {
-            if (ext.length) {
-                add(c);
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === '+') {
-            if (n === '(' && extended) {
-                ext.push(c);
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === '@' && extended) {
-            if (n === '(') {
-                ext.push(c);
-                continue;
-            }
-        }
-
-        if (c === '!') {
-            if (extended) {
-                if (inRange) {
-                    add('^');
-                    continue
-                }
-                if (n === '(') {
-                    ext.push(c);
-                    add('(?!');
-                    i++;
-                    continue;
+        const c = glob[i];
+        const n = glob[i + 1];
+        switch (c) {
+            case '\\':
+            case '$':
+            case '^':
+            case '.':
+            case '=':
+                add(`\\${c}`);
+                break;
+            case '/':
+                add(`\\${c}`, { split: true });
+                if (n === '/' && !strict) regex += '?';
+                break;
+            case '(':
+                if (ext.length) {
+                    add(c);
+                    break;
                 }
                 add(`\\${c}`);
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === '?') {
-            if (extended) {
-                if (n === '(') {
+                break;
+            case ')':
+                if (ext.length) {
+                    add(c);
+                    let type = ext.pop() as string;
+                    if (type === '@') {
+                        add('{1}');
+                    } else if (type === '!') {
+                        add('([^\/]*)');
+                    } else {
+                        add(type);
+                    }
+                    break;
+                }
+                add(`\\${c}`);
+                break;
+            case '|':
+                if (ext.length) {
+                    add(c);
+                    break;
+                }
+                add(`\\${c}`);
+                break;
+            case '+':
+                if (n === '(' && extended) {
                     ext.push(c);
-                } else {
-                    add('.');
+                    break;
                 }
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === '[') {
-            if (inRange && n === ':') {
-                i++; // skip [
-                let value = '';
-                while (glob[++i] !== ':') value += glob[i];
-                if (value === 'alnum') add('(\\w|\\d)');
-                else if (value === 'space') add('\\s');
-                else if (value === 'digit') add('\\d');
-                i++; // skip last ]
-                continue;
-            }
-            if (extended) {
-                inRange = true;
-                add(c);
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === ']') {
-            if (extended) {
-                inRange = false;
-                add(c);
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === '{') {
-            if (extended) {
-                inGroup = true;
-                add('(');
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === '}') {
-            if (extended) {
-                inGroup = false;
-                add(')');
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === ',') {
-            if (inGroup) {
-                add('|');
-                continue;
-            }
-            add(`\\${c}`);
-            continue;
-        }
-
-        if (c === '*') {
-            if (n === '(' && extended) {
-                ext.push(c);
-                continue;
-            }
-            // Move over all consecutive "*"'s.
-            // Also store the previous and next characters
-            let prevChar = glob[i - 1];
-            let starCount = 1;
-            while (glob[i + 1] === '*') {
-                starCount++;
-                i++;
-            }
-            let nextChar = glob[i + 1];
-            if (!globstar) {
-                // globstar is disabled, so treat any number of "*" as one
-                add('.*');
-            } else {
-                // globstar is enabled, so determine if this is a globstar segment
-                let isGlobstar =
-                    starCount > 1 && // multiple "*"'s
-                    (prevChar === '/' || prevChar === undefined) && // from the start of the segment
-                    (nextChar === '/' || nextChar === undefined); // to the end of the segment
-                if (isGlobstar) {
-                    // it's a globstar, so match zero or more path segments
-                    add(GLOBSTAR, { only: 'regex' });
-                    add(GLOBSTAR_SEGMENT, { only: 'path', last: true, split: true });
-                    i++; // move over the "/"
-                } else {
-                    // it's not a globstar, so only match one path segment
-                    add(WILDCARD, { only: 'regex' });
-                    add(WILDCARD_SEGMENT, { only: 'path' });
+                add(`\\${c}`);
+                break;
+            case '!':
+                if (extended) {
+                    if (inRange) {
+                        add('^');
+                        break
+                    }
+                    if (n === '(') {
+                        ext.push(c);
+                        add('(?!');
+                        i++;
+                        break;
+                    }
+                    add(`\\${c}`);
+                    break;
                 }
-            }
-            continue;
-        }
+                add(`\\${c}`);
+                break;
+            case '?':
+                if (extended) {
+                    if (n === '(') {
+                        ext.push(c);
+                    } else {
+                        add('.');
+                    }
+                    break;
+                }
+                add(`\\${c}`);
+                break;
+            case '[':
+                if (inRange && n === ':') {
+                    i++; // skip [
+                    let value = '';
+                    while (glob[++i] !== ':') value += glob[i];
+                    if (value === 'alnum') add('(\\w|\\d)');
+                    else if (value === 'space') add('\\s');
+                    else if (value === 'digit') add('\\d');
+                    i++; // skip last ]
+                    break;
+                }
+                if (extended) {
+                    inRange = true;
+                    add(c);
+                    break;
+                }
+                add(`\\${c}`);
+                break;
+            case ']':
+                if (extended) {
+                    inRange = false;
+                    add(c);
+                    break;
+                }
+                add(`\\${c}`);
+                break;
+            case '{':
+                if (extended) {
+                    inGroup = true;
+                    add('(');
+                    break;
+                }
+                add(`\\${c}`);
+                break;
 
-        add(c);
+            case '}':
+                if (extended) {
+                    inGroup = false;
+                    add(')');
+                    break;
+                }
+                add(`\\${c}`);
+                break;
+            case ',':
+                if (inGroup) {
+                    add('|');
+                    break;
+                }
+                add(`\\${c}`);
+                break;
+            case '*':
+                if (n === '(' && extended) {
+                    ext.push(c);
+                    break;
+                }
+                // Move over all consecutive "*"'s.
+                // Also store the previous and next characters
+                let prevChar = glob[i - 1];
+                let starCount = 1;
+                while (glob[i + 1] === '*') {
+                    starCount++;
+                    i++;
+                }
+                let nextChar = glob[i + 1];
+                if (!globstar) {
+                    // globstar is disabled, so treat any number of "*" as one
+                    add('.*');
+                } else {
+                    // globstar is enabled, so determine if this is a globstar segment
+                    let isGlobstar =
+                        starCount > 1 && // multiple "*"'s
+                        (prevChar === '/' || prevChar === undefined) && // from the start of the segment
+                        (nextChar === '/' || nextChar === undefined); // to the end of the segment
+                    if (isGlobstar) {
+                        // it's a globstar, so match zero or more path segments
+                        add(GLOBSTAR, { only: 'regex' });
+                        add(GLOBSTAR_SEGMENT, { only: 'path', last: true, split: true });
+                        i++; // move over the "/"
+                    } else {
+                        // it's not a globstar, so only match one path segment
+                        add(WILDCARD, { only: 'regex' });
+                        add(WILDCARD_SEGMENT, { only: 'path' });
+                    }
+                }
+                break;
+            case '@':
+                if (extended && n === '(') {
+                    ext.push(c);
+                    break;
+                }
+            default:
+                add(c);
+        } // end switch
     }
 
 
