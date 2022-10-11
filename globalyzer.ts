@@ -3,6 +3,13 @@ const CHARS = { '{': '}', '(': ')', '[': ']' } as { [key: string]: string };
 const STRICT = /\\(.)|(^!|\*|[\].+)]\?|\[[^\\\]]+\]|\{[^\\}]+\}|\(\?[:!=][^\\)]+\)|\([^|]+\|[^\\)]+\)|(\\).|([@?!+*]\(.*\)))/;
 const RELAXED = /\\(.)|(^!|[*?{}()[\]]|\(\?)/;
 
+
+export type GlobalyzerRet = {
+    base: string;
+    glob: string;
+    isGlob: boolean;
+}
+
 export type GlobalyzerOpt = {
     strict?: boolean;
 }
@@ -69,10 +76,10 @@ function parent(strIn: string, { strict = false } = {} as GlobalyzerOpt): string
  * @param {Object} [opts.strict=false] Use strict parsing
  * @returns {Object} object with parsed path
  */
-export function globalyzer(pattern: string, opts = {} as GlobalyzerOpt) {
+export function globalyzer(pattern: string, opts = {} as GlobalyzerOpt): GlobalyzerRet {
     let base = parent(pattern, opts);
     let isGlob = isglob(pattern, opts);
-    let glob;
+    let glob = '';
 
     if (base != '.') {
         glob = pattern.substr(base.length);
