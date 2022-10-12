@@ -15,7 +15,7 @@ export function order(arr: string[]) {
   return arr.filter(toIgnore).map(unixify).sort();
 }
 
-export function match(glob: string, strUnix: string, strWin?: string, opts = {} as Options) {
+export function match(glob: string, strUnix: string, strWin?: string, opts = {} as Options): boolean {
   // if (typeof strWin === 'object') {
   //   opts = strWin;
   //   strWin = '';
