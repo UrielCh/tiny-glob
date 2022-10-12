@@ -1,6 +1,6 @@
 {
   "name": "@u4/tiny-glob",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Tiny and extremely fast globbing",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
@@ -21,8 +21,7 @@
     "Terkel Gjervig <terkel@terkel.com> (https://terkel.com)"
   ],
   "files": [
-    "dist/*.js",
-    "dist/*.d.ts"
+    "dist/**"
   ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && npm run fixup",
