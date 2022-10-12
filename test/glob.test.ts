@@ -1,7 +1,7 @@
 import test from 'tape';
 import { join, resolve } from 'path';
 import { order, unixify } from './helpers';
-import { BlobOptions, glob } from '../index';
+import { BlobOptions, glob } from '../src/index';
 
 const cwd = join(__dirname, 'fixtures');
 

@@ -1,4 +1,4 @@
-import globrex, { Options, Results } from '../../globrex';
+import globrex, { Options, Results } from '../../src/globrex';
 import test from 'tape';
 const isWin = process.platform === 'win32';
 

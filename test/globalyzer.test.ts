@@ -1,5 +1,5 @@
 import test from 'tape';
-import $ from '../globalyzer';
+import $ from '../src/globalyzer';
 
 test('standard', t => {
     t.equal(typeof $, 'function', 'constructor is a typeof function');

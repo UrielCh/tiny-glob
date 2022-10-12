@@ -1,21 +1,21 @@
 <p align="center">
-  <img src="https://github.com/terkelg/tiny-glob/raw/master/tiny-glob.png" alt="Tiny Glob" width="450" />
+  <img src="https://github.com/urielch/tiny-glob/raw/master/tiny-glob.png" alt="Tiny Glob" width="450" />
 </p>
 
 <h1 align="center">tiny glob</h1>
 
 <p align="center">
-  <a href="https://npmjs.org/package/tiny-glob">
-    <img src="https://img.shields.io/npm/v/tiny-glob.svg" alt="version" />
+  <a href="https://npmjs.org/package/@u4/tiny-glob">
+    <img src="https://img.shields.io/npm/v/@u4/tiny-glob.svg" alt="version" />
   </a>
-  <a href="https://github.com/terkelg/tiny-glob/actions">
-    <img src="https://github.com/terkelg/tiny-glob/actions/workflows/ci.yml/badge.svg" alt="CI" />
+  <a href="https://github.com/urielch/tiny-glob/actions">
+    <img src="https://github.com/urielch/tiny-glob/actions/workflows/ci.yml/badge.svg" alt="CI" />
   </a>
-  <a href="https://npmjs.org/package/tiny-glob">
-    <img src="https://img.shields.io/npm/dm/tiny-glob.svg" alt="downloads" />
+  <a href="https://www.npmjs.com/package/@u4/tiny-glob">
+    <img src="https://img.shields.io/npm/dm/@u4/tiny-glob.svg" alt="downloads" />
   </a>
-  <a href="https://packagephobia.now.sh/result?p=tiny-glob">
-    <img src="https://packagephobia.now.sh/badge?p=tiny-glob" alt="install size" />
+  <a href="https://packagephobia.now.sh/result?p=@u4/tiny-glob">
+    <img src="https://packagephobia.now.sh/badge?p=@u4/tiny-glob" alt="install size" />
   </a>
 </p>
 
@@ -45,8 +45,12 @@ npm install tiny-glob
 
 ## Usage
 
-```js
-const glob = require('tiny-glob');
+```ts
+import glob from '@u4/tiny-glob';
+// or
+import { async as glob } from '@u4/tiny-glob';
+// or
+import { glob } from '@u4/tiny-glob';
 
 (async function(){
     let files = await glob('src/*/*.{js,md}');

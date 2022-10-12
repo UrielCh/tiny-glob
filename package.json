@@ -1,12 +1,13 @@
 {
   "name": "@u4/tiny-glob",
-  "version": "0.2.10",
+  "version": "0.3.0",
   "description": "Tiny and extremely fast globbing",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/UrielCh/tiny-glob.git"
   },
-  "types": "index.d.ts",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "license": "MIT",
   "author": {
     "name": "Terkel Gjervig",
@@ -14,14 +15,14 @@
     "url": "https://terkel.com"
   },
   "files": [
-    "*.js",
-    "*.d.ts"
+    "src/*.js",
+    "src/*.d.ts"
   ],
   "scripts": {
     "bench": "node bench",
     "build": "tsc",
     "prepare": "npm run build",
-    "clean": "rimraf {.,bench,test,test/helpers}/{*.js,*.d.ts}",
+    "clean": "rimraf {src,bench,test,test/helpers}/{*.js,*.d.ts}",
     "test": "ts-node node_modules/tape/bin/tape test/*.test.ts | tap-spec"
   },
   "devDependencies": {

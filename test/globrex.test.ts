@@ -1,5 +1,5 @@
 import test from 'tape';
-import globrex from '../globrex';
+import globrex from '../src/globrex';
 import { match, matchRegex, matchSegments } from './helpers';
 
 test('globrex: standard', t => {
