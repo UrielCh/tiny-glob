@@ -143,6 +143,11 @@ test('glob: options.cwd (absolute)', async t => {
   ]);
 });
 
+test('glob: non existing directory should return empty results', async t => {
+  t.plan(1);
+  await isMatch(t, 'test/fixtures/donotexists/dir/*', { dot: true }, []);
+});
+
 test('glob: options.dot', async t => {
   t.plan(2);
 

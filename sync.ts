@@ -9,7 +9,10 @@ export let CACHE: { [key: string]: boolean } = {};
 function walk(output: string[], prefix: string, lexer: BlobResults, opts: BlobOptionsI, dirname = '', level = 0) {
   const rgx = lexer.segments[level];
   const dir = resolve(opts.cwd, prefix, dirname);
-  const files = fs.readdirSync(dir);
+  let files = [] as string[];
+  try {
+    fs.readdirSync(dir);
+  } catch (e) { }
   const { dot, filesOnly } = opts;
 
   for (const file of files) {
