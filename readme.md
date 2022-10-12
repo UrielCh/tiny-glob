@@ -30,7 +30,7 @@
 ## Install
 
 ```
-npm install tiny-glob
+npm install @u4/tiny-glob
 ```
 
 
