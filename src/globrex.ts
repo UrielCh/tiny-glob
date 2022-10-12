@@ -298,6 +298,8 @@ export function globrex(glob: string, { extended = false, globstar = false, stri
                     ext.push(c);
                     break;
                 }
+                add(c);
+                break;
             default:
                 add(c);
         } // end switch

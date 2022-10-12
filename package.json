@@ -2,36 +2,45 @@
   "name": "@u4/tiny-glob",
   "version": "0.3.0",
   "description": "Tiny and extremely fast globbing",
+  "main": "dist/cjs/index.js",
+  "module": "dist/mjs/index.js",
+  "types": "dist/mjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/UrielCh/tiny-glob.git"
   },
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
   "license": "MIT",
-  "author": {
-    "name": "Terkel Gjervig",
-    "email": "terkel@terkel.com",
-    "url": "https://terkel.com"
-  },
+  "contributors": [
+    "Uriel Chemouni <uchemouni@gmail.com> (https://urielch.github.io/)",
+    "Terkel Gjervig <terkel@terkel.com> (https://terkel.com)"
+  ],
   "files": [
-    "src/*.js",
-    "src/*.d.ts"
+    "dist/*.js",
+    "dist/*.d.ts"
   ],
   "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && npm run fixup",
+    "fixup": "copyfiles -f misc/cjs/package.json dist/cjs/ && copyfiles -f misc/mjs/package.json dist/mjs/",
     "bench": "node bench",
-    "build": "tsc",
     "prepare": "npm run build",
-    "clean": "rimraf {src,bench,test,test/helpers}/{*.js,*.d.ts}",
-    "test": "ts-node node_modules/tape/bin/tape test/*.test.ts | tap-spec"
+    "clean": "rimraf {src,bench,test,test/helpers}/{*.js,*.d.ts} dist",
+    "test": "ts-node --project tsconfig-cjs.json node_modules/tape/bin/tape test/*.test.ts | tap-spec"
   },
   "devDependencies": {
     "@types/node": "^18.8.4",
     "@types/tape": "^4.13.2",
+    "copyfiles": "^2.4.1",
     "rimraf": "^3.0.2",
     "tap-spec": "^5.0.0",
     "tape": "^5.6.1",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
   },
   "keywords": [
     "glob",

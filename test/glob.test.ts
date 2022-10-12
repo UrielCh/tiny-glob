@@ -1,4 +1,5 @@
-import test from 'tape';
+import * as test from 'tape';
+// import test from 'tape';
 import { join, resolve } from 'path';
 import { order, unixify } from './helpers';
 import { BlobOptions, glob } from '../src/index';

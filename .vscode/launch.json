@@ -12,7 +12,8 @@
       "${workspaceFolder}/test/*.test.ts"
     ],
     "env": {
-      "NODE_OPTIONS": "-r ts-node/register --no-warnings"
+      "NODE_OPTIONS": "-r ts-node/register --no-warnings",
+      "TS_NODE_PROJECT": "tsconfig-cjs.json"
     },
     "console": "internalConsole"
   }]

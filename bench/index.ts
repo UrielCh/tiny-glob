@@ -3,7 +3,7 @@ import Benchmark, { Suite } from 'benchmark';
 import assert from './assert';
 import { sync } from 'glob';
 const fg = require('fast-glob');
-import u4curr from '../async';
+import u4curr from '..';
 import tinyBlob from "tiny-glob";
 
 const cwd = __dirname;

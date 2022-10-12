@@ -1,4 +1,5 @@
-import test from 'tape';
+import * as test from 'tape';
+// import test from 'tape';
 import globrex from '../src/globrex';
 import { match, matchRegex, matchSegments } from './helpers';
 
