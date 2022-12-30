@@ -1,6 +1,6 @@
 {
   "name": "@u4/tiny-glob",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Tiny and extremely fast globbing",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",

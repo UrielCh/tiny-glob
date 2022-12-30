@@ -1,4 +1,4 @@
-import { type Path } from './globrex';
+import { type Path } from './globrex.js';
 
 export const isHidden = /(^|[\\\/])\.[^\\\/\.]/g;
 // const readdir = promisify(fs.readdir);

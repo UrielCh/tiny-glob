@@ -13,6 +13,16 @@ async function isMatch(t: test.Test, str: string, opts: BlobOptions, arr: string
   t.same(val, arr);
 }
 
+
+test('glob: sub folder part', async t => {
+  t.plan(4);
+  await isMatch(t, 'test/fixtures/sub/*-bar/', {}, ['test/fixtures/sub/foo-bar']);
+  await isMatch(t, 'test/fixtures/sub/*-bar', {}, ['test/fixtures/sub/foo-bar']);
+  await isMatch(t, 'test/fixtures/sub/foo-*/', {}, ['test/fixtures/sub/foo-bar']);
+  await isMatch(t, 'test/fixtures/sub/foo-*', {}, ['test/fixtures/sub/foo-bar']);
+});
+
+
 test('glob: standard', async t => {
   t.plan(2);
   t.is(typeof glob, 'function', 'consturctor is a typeof function');

@@ -3,7 +3,6 @@ const CHARS = { '{': '}', '(': ')', '[': ']' } as { [key: string]: string };
 const STRICT = /\\(.)|(^!|\*|[\].+)]\?|\[[^\\\]]+\]|\{[^\\}]+\}|\(\?[:!=][^\\)]+\)|\([^|]+\|[^\\)]+\)|(\\).|([@?!+*]\(.*\)))/;
 const RELAXED = /\\(.)|(^!|[*?{}()[\]]|\(\?)/;
 
-
 export type GlobalyzerRet = {
     base: string;
     glob: string;

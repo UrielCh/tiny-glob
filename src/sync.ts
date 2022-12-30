@@ -1,8 +1,8 @@
 import * as fs from 'fs';
-import globrex from './globrex';
-import globalyzer from './globalyzer';
+import globrex from './globrex.js';
+import globalyzer from './globalyzer.js';
 import { join, resolve, relative } from 'path';
-import { BlobOptions, BlobOptionsI, BlobResults, isHidden } from './common';
+import { BlobOptions, BlobOptionsI, BlobResults, isHidden } from './common.js';
 
 export let CACHE: { [key: string]: boolean } = {};
 
